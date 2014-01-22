@@ -1,0 +1,21 @@
+{
+  "name": "angular-tree-selection-directive",
+  "version": "0.0.0",
+  "homepage": "https://github.com/baldurh/angular-password-directive",
+  "authors": [
+    "Baldur Már Helgason <baldur.helgason@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.0.3",
+    "angular": "~1.2.9"
+  }
+}
