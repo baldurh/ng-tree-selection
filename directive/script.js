@@ -5,10 +5,12 @@ angular.module('app', ['controller'])
       scope: {
         levels: '='
       },
-      templateUrl: 'tree-selection-template.html',
+      template: '<tree-level level="levels"></tree-level>',
       controller: function($scope) {
+        this.levels = $scope.levels;
         this.toggleCheckbox = function (level) {
           level.indeterminate = false;
+
           function determineSelected (elem) {
             if(elem === undefined) return;
             var allSet = true, allClear = true;
@@ -60,20 +62,55 @@ angular.module('app', ['controller'])
       }
     };
   }])
-  .directive('treeLevel', [function() {
+  .directive('treeLevel', ['$compile', function($compile) {
     return {
       restrict: 'E',
-      transclude: true,
+      scope: {
+        level: '=',
+        parent: '='
+      },
+      link: function (scope, element, attrs) {
+        
+        var template =  '<ul ng-show="!parent || parent.open">\
+                          <li ng-repeat="l in level">\
+                            <tree-line level="l" parent="parent"></tree-line>\
+                          </li>\
+                        </ul>';
+        var newElement = angular.element(template);
+        $compile(newElement)(scope);
+        element.append(newElement);
+      
+      }
+    };
+  }])
+  .directive('treeLine', ['$compile', function($compile) {
+    return {
+      restrict: 'E',
       scope: {
         level: '=',
         parent: '='
       },
       require: '^treeSelection',
-      templateUrl: 'tree-level-template.html',
       link: function(scope, element, attrs, controller) {
+        scope.level.parent = scope.parent;
+        var template =  '<i ng-init="level.selected = false; level.indeterminate = false;" class="fa" ng-class="{true:\'fa-minus-square-o\', false:\'fa-plus-square-o\', undefined:\'fa-plus-square-o\'}[level.open]" ng-click="level.open = !level.open" ng-show="level.subLevel"></i>\
+                          <label class="tree-lvl-1">\
+                            <input type="checkbox" ng-model="level.selected" ng-change="toggleCheckbox()">\
+                            <span>{{level.text}}</span>\
+                          </label>';
+        if (scope.level.subLevel) {
+          template += '<tree-level level="level.subLevel" parent="level"></tree-level>';
+        }
+
         scope.toggleCheckbox = function () {
           controller.toggleCheckbox(scope.level);
         };
+        
+
+        var newElement = angular.element(template);
+        $compile(newElement)(scope);
+        element.append(newElement);
+
         scope.$watch('level.indeterminate', function(){
           angular.element(element).find('input')[0].indeterminate = scope.level.indeterminate;
         });
