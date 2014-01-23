@@ -7,7 +7,7 @@
  *
  */
 
-angular.module('app', ['controller'])
+angular.module('ng-tree-selection', [])
   .directive('treeSelection', [function() {
     return {
       restrict: 'E',
@@ -30,6 +30,7 @@ angular.module('app', ['controller'])
           determineSelected(level);
         };
 
+        // changes the sub-tree
         function checkSubLevel (elem) {
           if(elem.subLevel === undefined) return;
           angular.forEach(elem.subLevel, function (sl, idx){
@@ -39,6 +40,8 @@ angular.module('app', ['controller'])
           });
         }
 
+        // traverses the parents to determine
+        // the selection type
         function determineSelected (elem) {
           if(elem === undefined) return;
           var allSet = true, allClear = true;
@@ -91,7 +94,7 @@ angular.module('app', ['controller'])
         scope.level.selected = false;
         scope.level.indeterminate = false;
 
-        var template =  '<i class="fa" ng-class="{true:\'fa-minus-square-o\', false:\'fa-plus-square-o\', undefined:\'fa-plus-square-o\'}[level.open]" ng-click="level.open = !level.open" ng-show="level.subLevel"></i>\
+        var template =   '<i class="fa" ng-class="{true:\'fa-minus-square-o\', false:\'fa-plus-square-o\', undefined:\'fa-plus-square-o\'}[level.open]" ng-click="level.open = !level.open" ng-show="level.subLevel"></i>\
                           <label ng-class="{\'ts-first-level\': !level.parent}">\
                             <input type="checkbox" ng-model="level.selected" ng-change="toggleCheckbox()">\
                             <span>{{level.text}}</span>\

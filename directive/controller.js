@@ -8,6 +8,7 @@ angular.module('controller', [])
           subLevel: [
             { 
               text: 'Number 1.1',
+              open: true,
               subLevel: [
                 {
                   text: 'Number 1.1.1'

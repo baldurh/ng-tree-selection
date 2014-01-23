@@ -5,7 +5,7 @@
   "authors": [
     "Baldur Már Helgason <baldur.helgason@gmail.com>"
   ],
-  "main": "index.html",
+  "main": "script.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
