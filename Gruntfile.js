@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    clean: ['.tmp'],
     jshint: {
       files: ['Gruntfile.js', 'directive/**/*.js'],
       options: {
@@ -14,9 +15,26 @@ module.exports = function(grunt) {
         }
       }
     },
+    less: {
+      development: {
+        options: {
+          paths: ['directive']
+        },
+        files: {
+          ".tmp/style.css": "directive/style.less"
+        }
+      }
+    },
+    copy: {
+      main: {
+        files: [
+          {expand: true, src: ['directive/!(*.less)'], dest: '.tmp/', filter: 'isFile', flatten: true}
+        ]
+      }
+    },
     watch: {
-      files: ['<%= jshint.files %>', 'directive/**/*.html'],
-      tasks: ['jshint'],
+      files: ['<%= jshint.files %>', 'directive/**/!(*.js)'],
+      tasks: ['clean', 'jshint', 'less', 'copy'],
       options: {
         livereload: true
       }
@@ -36,7 +54,7 @@ module.exports = function(grunt) {
       server: {
         options: {
           port: 8002,
-          base: 'directive',
+          base: '.tmp',
           livereload: true
         }
       }
@@ -46,7 +64,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('default', ['jshint', 'connect', 'open', 'watch']);
+  grunt.registerTask('default', ['clean', 'jshint', 'less', 'copy', 'connect', 'open', 'watch']);
 
 };

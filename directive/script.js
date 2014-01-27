@@ -16,7 +16,7 @@ angular.module('ng-tree-selection', [])
         parent: '='
       },
       template:  '<ul ng-show="!parent || parent.open">\
-                    <li ng-repeat="l in tree">\
+                    <li ng-repeat="l in tree" ng-class="{\'tree-leaf\': !l.subLevel}">\
                       <tree-level level="l" parent="parent"></tree-level>\
                     </li>\
                   </ul>',
