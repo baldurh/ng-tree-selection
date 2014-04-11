@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           paths: ['directive']
         },
         files: {
-          ".tmp/style.css": "directive/style.less"
+          ".tmp/ts-style.css": "directive/ts-style.less"
         }
       }
     },

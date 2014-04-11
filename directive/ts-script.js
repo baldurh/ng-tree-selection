@@ -1,7 +1,7 @@
 /**
  *  Angular Tree Selection Directive
  * 
- *  Version: 0.0.1
+ *  Version: 0.0.2
  *
  *  Author: Baldur Már Helgason <baldur.helgason@gmail.com>
  *
@@ -94,11 +94,12 @@ angular.module('ng-tree-selection', [])
         scope.level.selected = false;
         scope.level.indeterminate = false;
 
-        var template =   '<i class="fa" ng-class="{true:\'fa-minus-square-o\', false:\'fa-plus-square-o\', undefined:\'fa-plus-square-o\'}[level.open]" ng-click="level.open = !level.open" ng-show="level.subLevel"></i>\
-                          <label ng-class="{\'ts-first-level\': !level.parent}">\
-                            <input type="checkbox" ng-model="level.selected" ng-change="toggleCheckbox()">\
-                            <span>{{level.text}}</span>\
-                          </label>';
+          var template =  '<i class="fa" ng-class="{true:\'fa-minus\', false:\'fa-plus\', undefined:\'fa-plus\'}[level.open]" ng-click="level.open = !level.open" ng-show="level.subLevel"></i>' +
+                          '<div class="cb-wrapper">' +
+                            '<input type="checkbox" value="None" id="{{$id}}" name="check" ng-model="level.selected" ng-change="toggleCheckbox()">' +
+                            '<label ng-class="{\'ts-first-level\': !level.parent}" for="{{$id}}">' +
+                          '</div>' +
+                          '<span>{{level.text}}</span>';
 
         if (scope.level.subLevel) {
           template += '<tree-selection tree="level.subLevel" parent="level"></tree-selection>';
