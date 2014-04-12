@@ -15,12 +15,12 @@ angular.module('ng-tree-selection', [])
         tree: '=',
         parent: '='
       },
-      template:  '<ul ng-show="!parent || parent.open">\
-                    <li ng-repeat="l in tree" ng-class="{\'tree-leaf\': !l.subLevel}">\
-                      <tree-level level="l" parent="parent"></tree-level>\
-                    </li>\
-                  </ul>',
-      controller: function($scope) {
+      template:  '<ul ng-show="!parent || parent.open">' +
+        '<li ng-repeat="l in tree" ng-class="{\'tree-leaf\': !l.subLevel}">' +
+        '<tree-level level="l" parent="parent"></tree-level>' +
+        '</li>' +
+        '</ul>',
+      controller: function() {
 
         this.toggleCheckbox = function (level) {
           // when checkbox is toggled it's either on or off
@@ -32,8 +32,8 @@ angular.module('ng-tree-selection', [])
 
         // changes the sub-tree
         function checkSubLevel (elem) {
-          if(elem.subLevel === undefined) return;
-          angular.forEach(elem.subLevel, function (sl, idx){
+          if(elem.subLevel === undefined) { return; }
+          angular.forEach(elem.subLevel, function (sl){
             sl.selected = elem.selected;
             sl.indeterminate = elem.indeterminate;
             checkSubLevel(sl);
@@ -43,11 +43,11 @@ angular.module('ng-tree-selection', [])
         // traverses the parents to determine
         // the selection type
         function determineSelected (elem) {
-          if(elem === undefined) return;
+          if(elem === undefined) { return; }
           var allSet = true, allClear = true;
           if(elem.subLevel){
             var _break = false;
-            angular.forEach(elem.subLevel, function (sl, idx){
+            angular.forEach(elem.subLevel, function (sl){
               if (!_break) {
                 if(sl.indeterminate){
                   allClear = allSet = false;
@@ -59,7 +59,7 @@ angular.module('ng-tree-selection', [])
                   allSet = false;
                 }
                 // stop if we don't need more work
-                if(!allClear && !allSet) _break = true;
+                if(!allClear && !allSet) { _break = true; }
               }
             });
             if(allSet){

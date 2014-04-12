@@ -18,5 +18,24 @@
     "bootstrap": "~3.0.3",
     "font-awesome": "~4.0.3",
     "angular": "~1.2.9"
+  },
+  "overrides": {
+    "angular": {
+      "main": [
+        "./angular.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "./css/font-awesome.css",
+        "fonts/*"
+      ]
+    },
+    "bootstrap": {
+      "main": [
+        "./dist/css/bootstrap.css",
+        "./dist/css/bootstrap.css.map"
+      ]
+    }
   }
 }

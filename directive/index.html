@@ -2,9 +2,8 @@
 <html>
 
   <head>
-    <link href="//localhost:8001/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//localhost:8001/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="ts-style.css" rel="stylesheet">
+    <!-- inject:css -->
+    <!-- endinject -->
   </head>
 
   <body ng-app="app">
@@ -13,9 +12,8 @@
       <tree-selection tree="data.tree" ng-controller="TreeController"></tree-selection>
     </div>
 
-    <script src="//localhost:8001/angular/angular.js"></script>
-    <script src="controller.js"></script>
-    <script src="ts-script.js"></script>
+    <!-- inject:js -->
+    <!-- endinject -->
     <script type="text/javascript">
       angular.module('app', ['ng-tree-selection', 'controller']);
     </script>
