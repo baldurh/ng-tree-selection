@@ -1,4 +1,4 @@
-angular-tree-selection-directive
+ng-tree-selection
 ================================
 
 [Demo](http://baldurh.github.io/tree-selection-directive/)
