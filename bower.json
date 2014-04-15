@@ -1,10 +1,15 @@
 {
-  "name": "angular-tree-selection-directive",
+  "name": "ng-tree-selection",
   "version": "0.0.2",
-  "homepage": "https://github.com/baldurh/angular-tree-selection-directive",
+  "homepage": "https://github.com/baldurh/ng-tree-selection",
+  "keywords": ["input", "checkbox", "tree", "subtree", "selection", "foldable", "folding", "levels", "sublevel"],
   "authors": [
     "Baldur Már Helgason <baldur.helgason@gmail.com>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/revolunet/angular-carousel.git"
+  },
   "main": "script.js",
   "license": "MIT",
   "ignore": [
@@ -15,27 +20,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.0.3",
     "font-awesome": "~4.0.3",
     "angular": "~1.2.9"
-  },
-  "overrides": {
-    "angular": {
-      "main": [
-        "./angular.js"
-      ]
-    },
-    "font-awesome": {
-      "main": [
-        "./css/font-awesome.css",
-        "fonts/*"
-      ]
-    },
-    "bootstrap": {
-      "main": [
-        "./dist/css/bootstrap.css",
-        "./dist/css/bootstrap.css.map"
-      ]
-    }
   }
 }

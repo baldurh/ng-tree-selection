@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+  <body ng-app="app">
+    <div>
+        <p>&nbsp;</p>
+      <tree-selection tree="data.tree" ng-controller="TreeController"></tree-selection>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <script src="ng-tree-selection.js"></script>
+    <script type="text/javascript">
+      angular.module('app', ['ng-tree-selection', 'aController']);
+    </script>
+  </body>
+</html>

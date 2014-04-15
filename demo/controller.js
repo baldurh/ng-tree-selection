@@ -1,4 +1,4 @@
-angular.module('controller', [])
+angular.module('aController', [])
   .controller('TreeController', ['$scope', function ($scope) {
     $scope.data = {
       tree: [
